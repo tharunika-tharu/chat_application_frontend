@@ -1,59 +1,161 @@
-# ChatApplication
+# Chat Application Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+## Overview
+A real-time chat application frontend built with React.js and Socket.IO, designed to work with a backend server for seamless messaging.
 
-## Development server
+## Table of content
 
-To start a local development server, run:
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Features](#features)
+- [API Integration](#api-integration)
 
+---
+
+## Project Structure
+
+```plain
+chat_application_frontend/
+├── public/               # Static assets
+├── src/
+│   ├── app/       
+│   ├── assets/          
+│   ├── environments/     
+│   ├── index.html        # HTML file
+│   ├── styles.scss       # Global Style
+│   └── main.ts           # Entry point
+├── .gitignore
+├── package.json
+└── README.md
+```
+---
+
+## Technologies Used
+
+- ***React.js:*** JavaScript library for building user interfaces.
+- ***Socket.IO Client:*** Enables real-time communication between frontend and backend.
+- ***Bootstrap:*** Provides foundational styling capabilities.
+- ***Material-UI:*** For modern, responsive UI components and styling.
+- ***Redux:*** Handles application state management effectively.
+- ***React Router DOM:*** Facilitates client-side routing and navigation.
+- ***Axios:*** For making API calls and handling HTTP requests.
+
+---
+
+## Installation
+
+**Prerequisite**
+- Nodejs
+- backend 
+
+***Steps***
+1. Clone the repository
 ```bash
-ng serve
+git clone https://github.com/tharunika-tharu/chat_application_frontend.git
+cd chat_application_frontend
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. Install dependencies
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+3. Configure environment variables
 ```bash
-ng generate --help
+VITE_API_URL=http://localhost:5000  
+VITE_SOCKET_URL=http://localhost:5000  
 ```
 
-## Building
-
-To build the project run:
-
+4. Run the development server
 ```bash
-ng build
+npm run dev
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Features
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Real-time messaging 
+- User authentication 
+- Responsive UI 
+- Group chats & private messaging
+- Message history 
+- Typing indicators 
+- Online/offline status
+- Emoji support
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## API Integration
 
-For end-to-end (e2e) testing, run:
+<h2>REST API Endpoints</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>/api/auth/login</td>
+            <td>User login</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/auth/signup</td>
+            <td>User registration</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/chat</td>
+            <td>Fetch past messages</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/chat</td>
+            <td>Send new message</td>
+        </tr>
+    </tbody>
+</table>
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<h2>Socket.IO Events</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Direction</th>
+            <th>Purpose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>connect</td>
+            <td>Client → Server</td>
+            <td>Establish connection</td>
+        </tr>
+        <tr>
+            <td>send_message</td>
+            <td>Client → Server</td>
+            <td>Send a new message</td>
+        </tr>
+        <tr>
+            <td>receive_message</td>
+            <td>Server → Client</td>
+            <td>Broadcast received message</td>
+        </tr>
+        <tr>
+            <td>user_online</td>
+            <td>Server → Client</td>
+            <td>Update online users list</td>
+        </tr>
+        <tr>
+            <td>typing</td>
+            <td>Bidirectional</td>
+            <td>Show typing indicator</td>
+        </tr>
+    </tbody>
+</table>
